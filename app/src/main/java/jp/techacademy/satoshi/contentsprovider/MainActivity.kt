@@ -62,14 +62,12 @@ class MainActivity : AppCompatActivity() {
         )
 
         if (cursor!!.moveToFirst()) {
-            do {
-                // indexからＩＤを取得し、そのＩＤから画像のＵＲＩを取得する
+                // indexからIDを取得し、そのIDから画像のURIを取得する
                 val fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID)
                 val id = cursor.getLong(fieldIndex)
                 val imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id)
 
-                Log.d("ANDROID","URI : " + imageUri.toString())
-            } while (cursor.moveToNext())
+                imageView.setImageURI(imageUri)
         }
         cursor.close()
     }
